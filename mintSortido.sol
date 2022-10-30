@@ -26,7 +26,6 @@ contract mintSortido{
         
         if(result <= 8287){
             nftList[msg.sender].push(NFT(idCount, "Ninja Amador", 10, "Comum"));
-            
         }else if(result <= 9323 && result > 8287){
             nftList[msg.sender].push(NFT(idCount, "Ninja Junior", 25, "Raro"));
         }else if(result <= 9841 && result > 9323){
@@ -38,6 +37,7 @@ contract mintSortido{
         }else if(result <= 10000 && result > 9997){
             nftList[msg.sender].push(NFT(idCount, "Hokage da Empresa", 200, "Super-Lendario"));
         }
+        idCount++;
     }
 
     function nftUserList()external view returns(NFT[] memory){
