@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 contract mintSortido{
-    address public admin;
     mapping(address => NFT[]) nftList;
+    mapping(address => uint[]) userNftIdList;
     uint idCount = 0;
 
     struct NFT{
@@ -11,10 +11,6 @@ contract mintSortido{
         string name;
         uint str;
         string raridade;
-    }
-
-    constructor(){
-        admin = msg.sender;
     }
 
     function random() public view returns(uint){
@@ -37,6 +33,7 @@ contract mintSortido{
         }else if(result <= 10000 && result > 9997){
             nftList[msg.sender].push(NFT(idCount, "Hokage da Empresa", 200, "Super-Lendario"));
         }
+        userNftIdList[msg.sender].push(idCount);
         idCount++;
     }
 
@@ -44,4 +41,7 @@ contract mintSortido{
         return nftList[msg.sender];
     }
 
+    function nftUserIdList()external view returns(uint[] memory){
+        return userNftIdList[msg.sender];
+    }
 }
